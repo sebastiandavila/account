@@ -16,6 +16,20 @@ public class GlobalException {
     public ResponseEntity<Object> handleNoSuchElementException(NoSuchElementException ex) {
         ex.printStackTrace();
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body("El cliente no se encontró con el ID especificado");
+                .body("La cuenta no se encontró con el ID especificado");
+    }
+
+    @ExceptionHandler(InsufficientBalanceException.class)
+    public ResponseEntity<Object> insufficientBalanceException(InsufficientBalanceException ex) {
+        ex.printStackTrace();
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body("Saldo insuficiente para realizar este movimiento");
+    }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<Object> handleNoSuchElementException(ResourceNotFoundException ex) {
+        ex.printStackTrace();
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body("No se encontró cliente con el ID especificado");
     }
 }

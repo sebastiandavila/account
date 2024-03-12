@@ -44,33 +44,14 @@ public class MovementService {
         Account account = accountService.getAccountById(movement.getAccountId());
 
         if (account.getBalance().add(movement.getAmount()).compareTo(BigDecimal.ZERO) >= 0) {
+            account.setBalance(account.getBalance().add(movement.getAmount()));
             movement.setBalance(account.getBalance());
             Movement createdMovement = movementRepository.save(movement);
-            account.setBalance(account.getBalance().add(movement.getAmount()));
             accountService.updateAccount(movement.getAccountId(), account);
             return createdMovement;
         } else {
             throw new InsufficientBalanceException("Saldo insuficiente para realizar este movimiento");
         }
-
-
-
-//        String url = "http://cliente-persona-service/api/updateClientInformation";
-//        Request request = asyncHttpClient.preparePost(url)
-//                .setBody("accountId=" + accountId + "&movementId=" + createdMovement.getId())
-//                .build();
-//
-//        asyncHttpClient.executeRequest(request)
-//                .toCompletableFuture()
-//                .thenAccept(response -> {
-//                    System.out.println("Notification sent successfully: " + response.getStatusCode());
-//                })
-//                .exceptionally(throwable -> {
-//                    System.err.println("Error sending notification: " + throwable.getMessage());
-//                    return null;
-//                });
-
-//        return createdMovement;
     }
 
     public void deleteMovement(Long id) {
