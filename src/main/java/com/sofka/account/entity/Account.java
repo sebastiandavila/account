@@ -23,5 +23,11 @@ public class Account {
     private BigDecimal initialBalance;
 
     @Column(nullable = false)
+    private BigDecimal balance;
+
+    @Column(nullable = false)
     private Boolean active;
+
+    @Column(nullable = false)
+    private Long customerId;
 }

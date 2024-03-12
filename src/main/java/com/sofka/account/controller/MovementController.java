@@ -32,6 +32,7 @@ public class MovementController {
         }
     }
 
+
     @PostMapping
     public ResponseEntity<Movement> createMovement(@RequestBody Movement movement) {
         Movement createdMovement = movementService.createMovement(movement);

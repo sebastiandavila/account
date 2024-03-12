@@ -30,7 +30,12 @@ public class AccountService {
                 .orElse(null);
     }
 
+    public List<Account> getAccountsByCustomerId(Long id) {
+        return accountRepository.findByCustomerId(id);
+    }
+
     public Account createAccount(Account account) {
+        account.setBalance(account.getInitialBalance());
         return accountRepository.save(account);
     }
 
@@ -45,7 +50,7 @@ public class AccountService {
             existingAccount.setActive(updatedAccount.getActive());
             return accountRepository.save(existingAccount);
         } else {
-            return null;
+             throw new NoSuchElementException("Account not found with id: " + id);
         }
     }
 
