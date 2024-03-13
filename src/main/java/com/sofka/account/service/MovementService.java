@@ -8,8 +8,6 @@ import org.asynchttpclient.AsyncHttpClient;
 import org.asynchttpclient.DefaultAsyncHttpClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.asynchttpclient.Request;
-import org.asynchttpclient.Response;
 
 import java.math.BigDecimal;
 import java.util.List;
